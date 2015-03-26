@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div id="posts">
-		{% for post in posts %}
+		{% for k,post in posts.items() %}
 			<div class="post">
 				<span class="post-date">{{ post.metadata.date|format_date }}</span>
 				<a href="{{ post.url }}" class=post-title>
