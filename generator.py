@@ -69,7 +69,9 @@ def format_date(my_date, format='%B %d, %Y'):
 
 @app.route('/')
 def index():
-	return render_template('index.html', posts=feed.posts)
+	return render_template('index.html', posts=sorted(feed.posts.values(),
+							        	 key=lambda x:x.metadata['date'],
+							        	 reverse=True))
 
 @app.route('/blog/<path:path>')
 def post(path):
