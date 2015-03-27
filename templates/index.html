@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock head %}
+
 {% block content %}
-    <div id="posts">
-        {% for post in posts %}
-            <div class="post">
-                <span class="post-date">{{ post.metadata.date|format_date }}</span>
-                <a href="{{ post.url }}" class=post-title>
-                    {{ post.metadata.title }}{% if post.metadata.subtitle %}: {{ post.metadata.subtitle }}{% endif %}
-                </a>
-            </div>
-        {% endfor %}
+    <div class="right">
+        <div id="posts">
+            {% for post in posts %}
+                <div class="post">
+                    <span class="post-date">{{ post.metadata.date|format_date }}</span>
+                    <a href="{{ post.url }}" class=post-title>
+                        {{ post.metadata.title }}{% if post.metadata.subtitle %}: {{ post.metadata.subtitle }}{% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
