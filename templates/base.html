@@ -1,7 +1,9 @@
 <html>
 <head>
     <!-- Stylesheets -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto|Roboto+Slab' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     {% block head %}
         <title>Hey, I'm Dan.</title>
@@ -11,14 +13,23 @@
 
 {% block nav %}
     <div class="left">
-        <h1>Hey, I'm Dan</h1>
-        <p>Get at me!</p>
-        <ul>
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instagram</li>
-            <li>Github</li>
-        </ul>
+        <div class="container">
+            <div class="logo">
+                <p>Hey,</p>
+                <p>I'm</p>
+                <p>Dan.</p>
+            </div>
+            
+            <div class="contact">
+                <ul>
+                    <li><i class="fa fa-facebook-square"></i> <a href="https://www.facebook.com/Whi7ey">Facebook</a></li>
+                    <li><i class="fa fa-twitter-square"></i> <a href="https://twitter.com/danwhite">Twitter</a></li>
+                    <li><i class="fa fa-linkedin-square"></i> <a href="https://www.linkedin.com/profile/view?id=46936675">Linkedin</a></li>
+                    <li><i class="fa fa-instagram"></i> <a href="https://instagram.com/danwhite_/">Instagram</a></li>
+                    <li><i class="fa fa-github-square"></i> <a href="https://github.com/dmw7752">Github</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock nav %}
 

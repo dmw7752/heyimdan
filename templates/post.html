@@ -9,7 +9,8 @@
 {% block content %}
     <div class="right">
         <div id="header">
-            <h1>{{ post.metadata.title }}</h1>
+            <h3><a href="/"><i class="fa fa-arrow-circle-o-left"></i> Back to home</a></h3>
+            <h1> {{ post.metadata.title }}</h1>
             {% if post.metadata.subtitle %}
                 <h2>{{ post.metadata.subtitle }}</h2>
             {% endif %}

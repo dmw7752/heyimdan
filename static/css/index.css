@@ -11,7 +11,7 @@
 #posts a:hover {
     color: #FF3366;
     border-color: #999999;
-    border-width: 0px 0px 1px 0px;
+    border-width: 0 0 1px 0;
     border-style: dotted;
 }
 
