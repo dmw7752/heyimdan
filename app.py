@@ -1,6 +1,8 @@
 import os
+import sys
 
 from flask import Flask, render_template, url_for, abort
+from flask.ext.frozen import Freezer
 from werkzeug import cached_property
 import markdown
 import yaml
@@ -45,8 +47,8 @@ class Post(object):
                 meta += line
         self.metadata.update(yaml.load(meta))
 
-    #This decorator caches the html everytime this is called so you 
-    #are not re-rendering the markdown over and over again.
+    # This decorator caches the html everytime this is called so you 
+    # are not re-rendering the markdown over and over again.
     @cached_property
     def html(self):
         with open(self.file_path, 'r') as file_input:
@@ -60,12 +62,13 @@ class Post(object):
 
 app = Flask(__name__)
 feed = Feed()
+freezer = Freezer(app)
 
-
-#This decorator registers the def as a jinja2 filter
+# This decorator registers the def as a jinja2 filter
 @app.template_filter('format_date')
 def format_date(my_date, format='%B %d, %Y'):
     return my_date.strftime(format)
+
 
 @app.route('/')
 def index():
@@ -73,11 +76,17 @@ def index():
                                          key=lambda x:x.metadata['date'],
                                          reverse=True))
 
-@app.route('/blog/<path:path>')
+# Added a trailing slash here to keep urls pretty and so that frozen flask
+# doesnt complain about not knowing extentions. 
+@app.route('/blog/<path:path>/')
 def post(path):
     post = feed.get_post(path)
     return render_template('post.html', post=post)
 
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    if len(sys.argv) > 1 and sys.argv[1] == 'build':
+        freezer.freeze()
+    else:
+        app.run(port=8000, debug=True)
+
